@@ -13,12 +13,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.example.assignment3.databinding.ActivityMainBinding
-
+import com.example.assignment3.SummaryViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
-
+    private lateinit var summary : SummaryViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         val id = item.itemId
         val navController = findNavController(R.id.nav_host_fragment)
         return when(id){
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 val shareActionProvider : ShareActionProvider? = MenuItemCompat.getActionProvider(item) as ShareActionProvider?
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, "")
+                intent.putExtra(Intent.EXTRA_TEXT, summary.getSummary())
                 if(shareActionProvider != null){
                     shareActionProvider.setShareIntent(intent)
                 }
