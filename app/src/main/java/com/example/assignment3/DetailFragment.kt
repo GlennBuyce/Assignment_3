@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import edu.quinnipiac.ser210.gistsummary.DetailFragmentArgs
+import com.example.assignment3.DetailFragmentArgs
 import com.example.assignment3.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
