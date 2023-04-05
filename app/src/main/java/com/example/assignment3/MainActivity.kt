@@ -45,16 +45,18 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return when(id){
             R.id.shareFragment -> {
-                val shareActionProvider : ShareActionProvider? = MenuItemCompat.getActionProvider(item) as ShareActionProvider?
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, summary.getSummary())
-                if(shareActionProvider != null){
-                    shareActionProvider.setShareIntent(intent)
+                if(summary.getSummary() != "@strings/generate"){
+                    val shareActionProvider : ShareActionProvider? = MenuItemCompat.getActionProvider(item) as ShareActionProvider?
+                    val intent = Intent(Intent.ACTION_SEND)
+                    intent.type = "text/plain"
+                    intent.putExtra(Intent.EXTRA_TEXT, summary.getSummary())
+                    if(shareActionProvider != null){
+                        shareActionProvider.setShareIntent(intent)
+                    }
                 }
                 true
             }
-            else -> super.onOptionsItemSelected(item) || item.onNavDestinationSelected(navController)
+            else -> super.onOptionsItemSelected(item) //|| item.onNavDestinationSelected(navController)
         }
     }
 

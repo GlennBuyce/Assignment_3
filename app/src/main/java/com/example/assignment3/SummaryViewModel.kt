@@ -8,7 +8,7 @@ import retrofit2.Response
 
 class SummaryViewModel: ViewModel() {
     var createSummaryLiveData: MutableLiveData<TextSummary?> = MutableLiveData()
-    var textSummary: TextSummary = TextSummary("(generating summary...)")
+    var textSummary: TextSummary = TextSummary("@strings/generate")
 
     fun getCreateTextSummaryObserver(): MutableLiveData<TextSummary?> {
         return createSummaryLiveData

@@ -10,8 +10,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.example.assignment3.DetailFragmentArgs
 import com.example.assignment3.databinding.FragmentDetailBinding
+
 
 class DetailFragment : Fragment() {
     lateinit var viewModel: SummaryViewModel
@@ -29,6 +33,7 @@ class DetailFragment : Fragment() {
         }
 
         input = DetailFragmentArgs.fromBundle(bundle).inputText
+
     }
 
     override fun onCreateView(
