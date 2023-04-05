@@ -1,9 +1,12 @@
 package com.example.assignment3
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ShareActionProvider
+import androidx.core.view.MenuItemCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -37,8 +40,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
         val navController = findNavController(R.id.nav_host_fragment)
-        return super.onOptionsItemSelected(item) || item.onNavDestinationSelected(navController)
+        return when(id){
+            R.id.shareFragment -> {
+                val shareActionProvider : ShareActionProvider? = MenuItemCompat.getActionProvider(item) as ShareActionProvider?
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, "")
+                if(shareActionProvider != null){
+                    shareActionProvider.setShareIntent(intent)
+                }
+                true
+            }
+            else -> super.onOptionsItemSelected(item) || item.onNavDestinationSelected(navController)
+        }
     }
 
 
